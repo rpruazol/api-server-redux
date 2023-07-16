@@ -9,8 +9,11 @@ const {dbConnection} = require('./src/models/index')
 // 2. start server via exported function
 
 try{
-  dbConnection.sync()
-  .then(() => {
+  dbConnection
+  // .drop()
+  .sync({force:true})
+  .then((res) => {
+    console.log('models', res.models)
     init();
 
   })
